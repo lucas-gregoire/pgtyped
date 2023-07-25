@@ -2,7 +2,7 @@ import {
   ParameterTransform,
   processSQLQueryIR,
   processTSQueryAST,
-} from '@pgtyped/runtime';
+} from '@lsge/pgtyped-runtime';
 
 import {
   parseSQLFile,
@@ -11,16 +11,16 @@ import {
   SQLQueryAST,
   SQLQueryIR,
   TSQueryAST,
-} from '@pgtyped/parser';
+} from '@lsge/pgtyped-parser';
 
-import { getTypes, TypeSource } from '@pgtyped/query';
+import { getTypes, TypeSource } from '@lsge/pgtyped-query';
 import { camelCase } from 'camel-case';
 import { pascalCase } from 'pascal-case';
 import path from 'path';
 import { ParsedConfig } from './config.js';
 import { TypeAllocator, TypeMapping, TypeScope } from './types.js';
 import { parseCode as parseTypescriptFile } from './parseTypescript.js';
-import { IQueryTypes } from '@pgtyped/query/lib/actions';
+import { IQueryTypes } from '@lsge/pgtyped-query/lib/actions';
 
 export enum ProcessingMode {
   SQL = 'sql-file',
@@ -62,13 +62,13 @@ export const generateTypeAlias = (typeName: string, alias: string) =>
 
 type ParsedQuery =
   | {
-      ast: TSQueryAST;
-      mode: ProcessingMode.TS;
-    }
+    ast: TSQueryAST;
+    mode: ProcessingMode.TS;
+  }
   | {
-      ast: SQLQueryAST;
-      mode: ProcessingMode.SQL;
-    };
+    ast: SQLQueryAST;
+    mode: ProcessingMode.SQL;
+  };
 
 export async function queryToTypeDeclarations(
   parsedQuery: ParsedQuery,
@@ -222,9 +222,9 @@ export async function queryToTypeDeclarations(
     `/** '${queryName}' return type */\n` +
     (returnFieldTypes.length > 0
       ? generateInterface(
-          `${interfacePrefix}${interfaceName}Result`,
-          returnFieldTypes,
-        )
+        `${interfacePrefix}${interfaceName}Result`,
+        returnFieldTypes,
+      )
       : generateTypeAlias(resultInterfaceName, 'void'));
 
   const paramInterfaceName = `${interfacePrefix}${interfaceName}Params`;
@@ -232,9 +232,9 @@ export async function queryToTypeDeclarations(
     `/** '${queryName}' parameters type */\n` +
     (paramFieldTypes.length > 0
       ? generateInterface(
-          `${interfacePrefix}${interfaceName}Params`,
-          paramFieldTypes,
-        )
+        `${interfacePrefix}${interfaceName}Params`,
+        paramFieldTypes,
+      )
       : generateTypeAlias(paramInterfaceName, 'void'));
 
   const typePairInterface =
@@ -251,26 +251,26 @@ export async function queryToTypeDeclarations(
 
 type ITypedQuery =
   | {
-      mode: 'ts';
-      fileName: string;
-      query: {
-        name: string;
-        ast: TSQueryAST;
-      };
-      typeDeclaration: string;
-    }
-  | {
-      mode: 'sql';
-      fileName: string;
-      query: {
-        name: string;
-        ast: SQLQueryAST;
-        ir: SQLQueryIR;
-        paramTypeAlias: string;
-        returnTypeAlias: string;
-      };
-      typeDeclaration: string;
+    mode: 'ts';
+    fileName: string;
+    query: {
+      name: string;
+      ast: TSQueryAST;
     };
+    typeDeclaration: string;
+  }
+  | {
+    mode: 'sql';
+    fileName: string;
+    query: {
+      name: string;
+      ast: SQLQueryAST;
+      ir: SQLQueryIR;
+      paramTypeAlias: string;
+      returnTypeAlias: string;
+    };
+    typeDeclaration: string;
+  };
 
 async function generateTypedecsFromFile(
   contents: string,
@@ -359,7 +359,7 @@ export async function generateDeclarationFile(
   if (mode === 'sql') {
     // Second parameter has no effect here, we could have used any value
     types.use(
-      { name: 'PreparedQuery', from: '@pgtyped/runtime' },
+      { name: 'PreparedQuery', from: '@lsge/pgtyped-runtime' },
       TypeScope.Return,
     );
   }
@@ -393,9 +393,8 @@ export async function generateDeclarationFile(
       .split('\n')
       .map((s: string) => ' * ' + s)
       .join('\n');
-    declarationFileContents += `const ${
-      typeDec.query.name
-    }IR: any = ${JSON.stringify(typeDec.query.ir)};\n\n`;
+    declarationFileContents += `const ${typeDec.query.name
+      }IR: any = ${JSON.stringify(typeDec.query.ir)};\n\n`;
     declarationFileContents +=
       `/**\n` +
       ` * Query generated from SQL:\n` +

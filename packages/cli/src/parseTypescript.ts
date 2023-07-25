@@ -5,7 +5,7 @@ interface INode {
   queryText: string;
 }
 
-import { parseTSQuery, TSQueryAST, ParseEvent } from '@pgtyped/parser';
+import { parseTSQuery, TSQueryAST, ParseEvent } from '@lsge/pgtyped-parser';
 
 export type TSParseResult = { queries: TSQueryAST[]; events: ParseEvent[] };
 

@@ -1,4 +1,4 @@
-import { parseTSQuery } from '@pgtyped/parser';
+import { parseTSQuery } from '@lsge/pgtyped-parser';
 import { ParameterTransform } from './preprocessor.js';
 import { processTSQueryAST } from './preprocessor-ts.js';
 

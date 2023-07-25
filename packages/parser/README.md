@@ -1,4 +1,4 @@
-## @pgtyped/runtime
+## @lsge/pgtyped-runtime
 
 This package provides SQL and TS query parsing for pgTyped.
 

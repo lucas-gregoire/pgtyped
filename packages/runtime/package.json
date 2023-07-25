@@ -1,5 +1,5 @@
 {
-  "name": "@pgtyped/runtime",
+  "name": "@lsge/pgtyped-runtime",
   "version": "2.1.0",
   "type": "module",
   "exports": {
@@ -34,7 +34,7 @@
     "watch": "tsc --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "@pgtyped/parser": "^2.1.0",
+    "@lsge/pgtyped-parser": "^2.1.0",
     "chalk": "^4.1.0",
     "debug": "^4.1.1"
   },

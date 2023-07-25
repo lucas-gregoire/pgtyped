@@ -8,7 +8,7 @@ PgTyped also supports parsing queries from TS files.
 Such queries must be tagged with an `sql` template literal, like this:
 
 ```ts
-import { sql } from '@pgtyped/runtime';
+import { sql } from '@lsge/pgtyped-runtime';
 
 const getUsersWithComments = sql`
   SELECT u.* FROM users u
@@ -21,7 +21,7 @@ PgTyped will then scan your project for such `sql` tags and generate types for e
 Once the type files have been generated you can import them to type your query:
 
 ```ts
-import { sql } from '@pgtyped/runtime';
+import { sql } from '@lsge/pgtyped-runtime';
 import { IGetUsersWithCommentsQuery } from './sample.types';
 
 const getUsersWithComments = sql<IGetUsersWithCommentsQuery>`
@@ -59,11 +59,12 @@ $$paramName;
 #### Example:
 
 ```ts title="Query code:"
-const query = sql<IQueryType>`SELECT FROM users where age in $$ages`;
+const query = sql<IQueryType> `SELECT FROM users where age in $$ages` ; 
 
-const parameters = { ages: [25, 30, 35] };
+const parameters = { ages: [25, 30, 35] }; 
 
-query.run(parameters, connection);
+query.run(parameters, connection); 
+
 ```
 
 ```sql title="Resulting query:"
@@ -86,11 +87,13 @@ $user(name, age)
 ```ts title="Query code:"
 const query = sql<
   IQueryType
->`INSERT INTO users (name, age) VALUES $user(name, age) RETURNING id`;
 
-const parameters = { user: { name: 'Rob', age: 56 } };
+> `INSERT INTO users (name, age) VALUES $user(name, age) RETURNING id` ; 
 
-query.run(parameters, connection);
+const parameters = { user: { name: 'Rob', age: 56 } }; 
+
+query.run(parameters, connection); 
+
 ```
 
 ```sql title="Resulting query:"
@@ -125,23 +128,23 @@ query.run(parameters, connection);
 
 ```sql title="Resulting query:"
 -- Bindings: ['Rob', 56, 'Tom', 45]
-INSERT INTO users (name, age) VALUES ($1, $2), ($3, $4) RETURNING id;
+INSERT INTO users (name, age) VALUES ($1, $2), ($3, $4) RETURNING id; 
 ```
 
 ## Parameter type reference
 
 | Expansion             | Syntax                      | Parameter Type                                             |
 | --------------------- | --------------------------- | ---------------------------------------------------------- |
-| Scalar parameter      | `$paramName`                | `paramName: ParamType`                                     |
-| Object pick           | `$paramName(name, author)`  | `paramName: { name: NameType, author: AuthorType }`        |
-| Array spread          | `$$paramName`               | `paramName: Array<ParamType>`                              |
+| Scalar parameter      | `$paramName` | `paramName: ParamType` |
+| Object pick           | `$paramName(name, author)` | `paramName: { name: NameType, author: AuthorType }` |
+| Array spread          | `$$paramName` | `paramName: Array<ParamType>` |
 | Array pick and spread | `$$paramName(name, author)` | `paramName: Array<{ name: NameType, author: AuthorType }>` |
 
 ## Substitution reference
 
 | Expansion             | Query in TS                  | Query with substituted parameter  |
 |-----------------------|------------------------------|-----------------------------------|
-| Simple parameter      | `$parameter`                 | `$1`                              |
-| Object pick           | `$object(prop1, prop2)`      | `($1, $2)`                        |
-| Array spread          | `$$array`                    | `($1, $2, $3)`                    |
-| Array pick and spread | `$$objectArray(prop1, prop2)`| `($1, $2), ($3, $4), ($5, $6)`    |
+| Simple parameter      | `$parameter` | `$1` |
+| Object pick           | `$object(prop1, prop2)` | `($1, $2)` |
+| Array spread          | `$$array` | `($1, $2, $3)` |
+| Array pick and spread | `$$objectArray(prop1, prop2)` | `($1, $2), ($3, $4), ($5, $6)` |

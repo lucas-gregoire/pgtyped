@@ -7,7 +7,7 @@ import {
   MappableType,
   Type,
   ImportedType,
-} from '@pgtyped/query';
+} from '@lsge/pgtyped-query';
 import os from 'os';
 import path from 'path';
 
@@ -148,8 +148,7 @@ export function declareImport(
       names.set(namedImport, imp.name);
     } else if (names.get(namedImport) !== imp.name) {
       throw new Error(
-        `Import ${namedImport} from package "${
-          imp.from
+        `Import ${namedImport} from package "${imp.from
         }" is aliased differently multiple times (${imp.name} and ${names.get(
           namedImport,
         )})`,
@@ -223,7 +222,7 @@ export class TypeAllocator {
   constructor(
     private mapping: TypeMapping,
     private allowUnmappedTypes?: boolean,
-  ) {}
+  ) { }
 
   isMappedType(name: string): name is keyof TypeMapping {
     return name in this.mapping;

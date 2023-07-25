@@ -2,9 +2,9 @@ import nun from 'nunjucks';
 import path from 'path';
 import fs from 'fs-extra';
 import { generateDeclarationFile } from './generator.js';
-import { startup } from '@pgtyped/query';
+import { startup } from '@lsge/pgtyped-query';
 import { ParsedConfig, TransformConfig } from './config.js';
-import { AsyncQueue } from '@pgtyped/wire';
+import { AsyncQueue } from '@lsge/pgtyped-wire';
 import worker from 'piscina';
 
 // disable autoescape as it breaks windows paths

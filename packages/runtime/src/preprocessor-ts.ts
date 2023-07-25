@@ -1,5 +1,5 @@
-import { TSQueryAST, assert } from '@pgtyped/parser';
-import { Param, ParamKey, ParamType } from '@pgtyped/parser';
+import { TSQueryAST, assert } from '@lsge/pgtyped-parser';
+import { Param, ParamKey, ParamType } from '@lsge/pgtyped-parser';
 import {
   DictArrayParameter,
   DictParameter,

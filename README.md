@@ -3,9 +3,10 @@
 # [PgTyped](https://pgtyped.dev/)
 
 ![Version](https://img.shields.io/github/v/release/adelsz/pgtyped)
+
 [![Actions Status](https://github.com/adelsz/pgtyped/workflows/CI/badge.svg)](https://github.com/adelsz/pgtyped/actions) [![Join the chat at https://gitter.im/pgtyped/community](https://badges.gitter.im/pgtyped/community.svg)](https://gitter.im/pgtyped/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-PgTyped makes it possible to use raw SQL in TypeScript with guaranteed type-safety.  
+PgTyped makes it possible to use raw SQL in TypeScript with guaranteed type-safety.
 No need to map or translate your DB schema to TypeScript, PgTyped automatically generates types and interfaces for your SQL queries by using your running Postgres database as the source of type information.
 
 ---
@@ -26,8 +27,8 @@ Visit our documentation page at [https://pgtyped.dev/](https://pgtyped.dev/)
 
 ### Getting started
 
-1. `npm install -D @pgtyped/cli typescript` (typescript is a required peer dependency for pgtyped)
-2. `npm install @pgtyped/runtime` (`@pgtyped/runtime` is the only required runtime dependency of pgtyped)
+1. `npm install -D @lsge/pgtyped-cli typescript` (typescript is a required peer dependency for pgtyped)
+2. `npm install @lsge/pgtyped-runtime` (`@lsge/pgtyped-runtime` is the only required runtime dependency of pgtyped)
 3. Create a PgTyped `config.json` file.
 4. Run `npx pgtyped -w -c config.json` to start PgTyped in watch mode.
 
@@ -36,14 +37,14 @@ You can also refer to the [example app](./packages/example/README.md) for a prec
 
 ### Example
 
-Lets save some queries in `books.sql`:
+Lets save some queries in `books.sql` :
 
 ```sql
 /* @name FindBookById */
 SELECT * FROM books WHERE id = :bookId;
 ```
 
-PgTyped parses the SQL file, extracting all queries and generating strictly typed TS queries in `books.queries.ts`:
+PgTyped parses the SQL file, extracting all queries and generating strictly typed TS queries in `books.queries.ts` :
 
 ```ts
 /** Types generated for queries found in "books.sql" */
@@ -73,7 +74,7 @@ export const findBookById = new PreparedQuery<
 >(...);
 ```
 
-Query `findBookById` is now statically typed, with types inferred from the PostgreSQL schema.  
+Query `findBookById` is now statically typed, with types inferred from the PostgreSQL schema.
 This generated query can be imported and executed as follows:
 
 ```ts

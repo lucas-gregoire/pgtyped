@@ -1,5 +1,5 @@
 /** Types generated for queries found in "src/comments/comments.sql" */
-import { PreparedQuery } from '@pgtyped/runtime';
+import { PreparedQuery } from '@lsge/pgtyped-runtime';
 
 /** 'GetAllComments' parameters type */
 export interface IGetAllCommentsParams {
@@ -20,15 +20,15 @@ export interface IGetAllCommentsQuery {
   result: IGetAllCommentsResult;
 }
 
-const getAllCommentsIR: any = {"usedParamSet":{"id":true},"params":[{"name":"id","required":true,"transform":{"type":"scalar"},"locs":[{"a":39,"b":42},{"a":57,"b":59}]}],"statement":"SELECT * FROM book_comments WHERE id = :id! OR user_id = :id                                      "};
+const getAllCommentsIR: any = { "usedParamSet": { "id": true }, "params": [{ "name": "id", "required": true, "transform": { "type": "scalar" }, "locs": [{ "a": 39, "b": 42 }, { "a": 57, "b": 59 }] }], "statement": "SELECT * FROM book_comments WHERE id = :id! OR user_id = :id                                      " };
 
 /**
  * Query generated from SQL:
  * ```
- * SELECT * FROM book_comments WHERE id = :id! OR user_id = :id                                      
+ * SELECT * FROM book_comments WHERE id = :id! OR user_id = :id
  * ```
  */
-export const getAllComments = new PreparedQuery<IGetAllCommentsParams,IGetAllCommentsResult>(getAllCommentsIR);
+export const getAllComments = new PreparedQuery<IGetAllCommentsParams, IGetAllCommentsResult>(getAllCommentsIR);
 
 
 /** 'GetAllCommentsByIds' parameters type */
@@ -50,7 +50,7 @@ export interface IGetAllCommentsByIdsQuery {
   result: IGetAllCommentsByIdsResult;
 }
 
-const getAllCommentsByIdsIR: any = {"usedParamSet":{"ids":true},"params":[{"name":"ids","required":true,"transform":{"type":"array_spread"},"locs":[{"a":40,"b":43},{"a":55,"b":59}]}],"statement":"SELECT * FROM book_comments WHERE id in :ids AND id in :ids!"};
+const getAllCommentsByIdsIR: any = { "usedParamSet": { "ids": true }, "params": [{ "name": "ids", "required": true, "transform": { "type": "array_spread" }, "locs": [{ "a": 40, "b": 43 }, { "a": 55, "b": 59 }] }], "statement": "SELECT * FROM book_comments WHERE id in :ids AND id in :ids!" };
 
 /**
  * Query generated from SQL:
@@ -58,7 +58,7 @@ const getAllCommentsByIdsIR: any = {"usedParamSet":{"ids":true},"params":[{"name
  * SELECT * FROM book_comments WHERE id in :ids AND id in :ids!
  * ```
  */
-export const getAllCommentsByIds = new PreparedQuery<IGetAllCommentsByIdsParams,IGetAllCommentsByIdsResult>(getAllCommentsByIdsIR);
+export const getAllCommentsByIds = new PreparedQuery<IGetAllCommentsByIdsParams, IGetAllCommentsByIdsResult>(getAllCommentsByIdsIR);
 
 
 /** 'InsertComment' parameters type */
@@ -83,7 +83,7 @@ export interface IInsertCommentQuery {
   result: IInsertCommentResult;
 }
 
-const insertCommentIR: any = {"usedParamSet":{"comments":true},"params":[{"name":"comments","required":false,"transform":{"type":"pick_array_spread","keys":[{"name":"userId","required":true},{"name":"commentBody","required":true}]},"locs":[{"a":73,"b":81}]}],"statement":"INSERT INTO book_comments (user_id, body)\n-- NOTE: this is a note\nVALUES :comments RETURNING *"};
+const insertCommentIR: any = { "usedParamSet": { "comments": true }, "params": [{ "name": "comments", "required": false, "transform": { "type": "pick_array_spread", "keys": [{ "name": "userId", "required": true }, { "name": "commentBody", "required": true }] }, "locs": [{ "a": 73, "b": 81 }] }], "statement": "INSERT INTO book_comments (user_id, body)\n-- NOTE: this is a note\nVALUES :comments RETURNING *" };
 
 /**
  * Query generated from SQL:
@@ -93,7 +93,7 @@ const insertCommentIR: any = {"usedParamSet":{"comments":true},"params":[{"name"
  * VALUES :comments RETURNING *
  * ```
  */
-export const insertComment = new PreparedQuery<IInsertCommentParams,IInsertCommentResult>(insertCommentIR);
+export const insertComment = new PreparedQuery<IInsertCommentParams, IInsertCommentResult>(insertCommentIR);
 
 
 /** 'SelectExistsTest' parameters type */
@@ -110,7 +110,7 @@ export interface ISelectExistsTestQuery {
   result: ISelectExistsTestResult;
 }
 
-const selectExistsTestIR: any = {"usedParamSet":{},"params":[],"statement":"SELECT EXISTS ( SELECT 1 WHERE true ) AS \"isTransactionExists\""};
+const selectExistsTestIR: any = { "usedParamSet": {}, "params": [], "statement": "SELECT EXISTS ( SELECT 1 WHERE true ) AS \"isTransactionExists\"" };
 
 /**
  * Query generated from SQL:
@@ -118,6 +118,4 @@ const selectExistsTestIR: any = {"usedParamSet":{},"params":[],"statement":"SELE
  * SELECT EXISTS ( SELECT 1 WHERE true ) AS "isTransactionExists"
  * ```
  */
-export const selectExistsTest = new PreparedQuery<ISelectExistsTestParams,ISelectExistsTestResult>(selectExistsTestIR);
-
-
+export const selectExistsTest = new PreparedQuery<ISelectExistsTestParams, ISelectExistsTestResult>(selectExistsTestIR);
