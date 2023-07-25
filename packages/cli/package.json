@@ -1,6 +1,6 @@
 {
   "name": "@lsge/pgtyped-cli",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -34,9 +34,9 @@
     "pgtyped": "lib/index.js"
   },
   "dependencies": {
-    "@lsge/pgtyped-parser": "^2.1.0",
-    "@lsge/pgtyped-query": "^2.2.0",
-    "@lsge/pgtyped-wire": "^2.2.0",
+    "@lsge/pgtyped-parser": "^2.2.2",
+    "@lsge/pgtyped-query": "^2.2.2",
+    "@lsge/pgtyped-wire": "^2.2.2",
     "camel-case": "^4.1.1",
     "chalk": "^4.0.0",
     "chokidar": "^3.3.1",

@@ -1,6 +1,6 @@
 {
   "name": "@lsge/pgtyped-query",
-  "version": "2.2.0",
+  "version": "2.2.2",
   "type": "module",
   "exports": {
     ".": {
@@ -32,8 +32,8 @@
     "watch": "tsc --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "@lsge/pgtyped-runtime": "^2.1.0",
-    "@lsge/pgtyped-wire": "^2.2.0",
+    "@lsge/pgtyped-runtime": "^2.2.2",
+    "@lsge/pgtyped-wire": "^2.2.2",
     "chalk": "^4.1.0",
     "debug": "^4.1.1"
   },
