@@ -359,7 +359,7 @@ export async function generateDeclarationFile(
   if (mode === 'sql') {
     // Second parameter has no effect here, we could have used any value
     types.use(
-      { name: 'PreparedQuery', from: '@lsge/pgtyped-runtime' },
+      { name: 'PreparedQuery', from: '@pgtyped/runtime' },
       TypeScope.Return,
     );
   }
