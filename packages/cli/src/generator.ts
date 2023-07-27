@@ -357,7 +357,7 @@ export async function generateDeclarationFile(
   const types = new TypeAllocator(TypeMapping(config.typesOverrides));
 
   if (mode === 'sql') {
-    // Second parameter has no effect here, we could have used any value
+    // Second parameter has no effect here, we could have used any value.
     types.use(
       { name: 'PreparedQuery', from: '@pgtyped/runtime' },
       TypeScope.Return,
