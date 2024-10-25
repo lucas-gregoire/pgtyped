@@ -1,6 +1,6 @@
 {
-  "name": "@pgtyped/runtime",
-  "version": "2.3.0",
+  "name": "@lsge/pgtyped-runtime",
+  "version": "2.3.1",
   "type": "module",
   "exports": {
     ".": {
