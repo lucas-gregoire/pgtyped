@@ -83,8 +83,10 @@ interface ITypePair {
 
 export const sql = <TTypePair extends ITypePair>(
   stringsArray: TemplateStringsArray,
+  ...values: any[]
 ) => {
-  const { query } = parseTSQuery(stringsArray[0]);
+  const queryString = String.raw({ raw: stringsArray }, ...values);
+  const { query } = parseTSQuery(queryString);
   return new TaggedQuery<TTypePair>(query);
 };
 
